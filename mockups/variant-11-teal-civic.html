@@ -47,10 +47,9 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .hero .ua .label-r b{color:var(--teal2)}
 @keyframes lbl-pulse{0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,.5)}50%{box-shadow:0 0 0 5px rgba(13,148,136,0)}}
 
-.hero .ua .mapwrap{position:relative;margin-top:28px}
-.hero .ua svg.map{width:100%;height:auto;display:block;background-image:radial-gradient(circle at 1px 1px,rgba(11,46,46,.08) 1px,transparent 1px);background-size:22px 22px;border-radius:12px}
-.hero .ua svg.map path.country{fill:rgba(13,148,136,.04);stroke:rgba(11,46,46,.35);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
-.hero .ua svg.map path.crimea{fill:rgba(13,148,136,.04);stroke:rgba(11,46,46,.25);stroke-width:1.6;stroke-dasharray:4 3}
+.hero .ua .mapwrap{position:relative;margin-top:28px;aspect-ratio:800/533;background-image:radial-gradient(circle at 1px 1px,rgba(11,46,46,.07) 1px,transparent 1px);background-size:22px 22px;border-radius:12px;overflow:visible}
+.hero .ua svg.map{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .ua svg.map path.country{fill:rgba(13,148,136,.05);stroke:rgba(11,46,46,.45);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
 
 .hero .ua .blip{position:absolute;width:12px;height:12px;border-radius:50%;background:currentColor;transform:translate(-50%,-50%);box-shadow:0 0 0 0 currentColor;animation:blip-ping 2.4s infinite;z-index:2;cursor:pointer}
 .hero .ua .blip::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1.5px solid currentColor;opacity:.5}
@@ -139,26 +138,28 @@ footer a:hover{color:#ccfbf1}
     <span class="label">Моніторинг загроз — Live</span>
     <span class="label-r">Оновлено <b>14:32 · 14.04.2026</b></span>
     <div class="mapwrap">
-      <svg class="map" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" aria-label="Мапа України">
-        <path class="country" d="M 85,298 L 118,260 L 148,228 L 172,196 L 196,168 L 228,148 L 264,132 L 302,118 L 344,108 L 388,104 L 428,108 L 470,118 L 510,132 L 548,150 L 582,170 L 612,192 L 640,214 L 668,238 L 692,264 L 710,288 L 720,312 L 712,336 L 692,354 L 666,368 L 634,378 L 600,384 L 564,388 L 528,390 L 492,392 L 458,396 L 432,402 L 422,418 Q 420,438 436,458 Q 448,470 438,464 Q 420,444 408,440 L 388,420 L 356,418 L 320,422 L 286,428 L 250,428 L 214,420 L 178,404 L 146,382 L 118,354 L 96,326 Z"/>
-        <path class="crimea" d="M 420,418 L 444,430 L 464,438 L 478,448 L 484,460 L 476,472 L 456,470 L 438,458 L 424,442 Z"/>
+      <svg class="map" viewBox="0 0 800 533" preserveAspectRatio="xMidYMid meet" aria-label="Мапа України (кордони 1991 р.)">
+        <path class="country" d="M 430.9,19.4 L 447.4,22.0 L 458.5,7.1 L 471.9,10.4 L 517.5,4.0 L 545.6,41.3 L 534.6,54.6 L 538.3,75.0 L 573.4,78.2 L 589.0,106.8 L 588.1,119.7 L 644.0,142.9 L 677.7,132.5 L 704.9,163.3 L 730.6,162.6 L 795.5,184.0 L 796.0,203.3 L 778.1,237.8 L 787.9,274.1 L 780.9,296.1 L 738.3,300.9 L 715.6,319.3 L 714.3,348.5 L 679.1,353.8 L 649.8,375.1 L 608.6,378.6 L 570.7,403.1 L 573.3,444.1 L 594.8,460.0 L 639.7,456.0 L 631.1,479.5 L 582.9,490.9 L 523.2,529.0 L 498.7,515.6 L 508.4,484.7 L 460.3,465.4 L 468.1,452.8 L 510.2,430.9 L 497.5,415.8 L 429.1,399.2 L 426.1,374.6 L 385.3,382.7 L 368.9,419.0 L 334.9,467.6 L 314.9,456.3 L 294.2,466.9 L 274.6,454.8 L 285.7,447.7 L 293.4,425.1 L 305.4,404.1 L 302.3,392.3 L 311.5,387.0 L 315.8,396.1 L 341.8,398.1 L 353.4,393.2 L 345.2,386.5 L 348.3,376.7 L 332.9,360.0 L 326.6,332.4 L 310.6,321.7 L 313.7,299.4 L 293.8,281.7 L 275.7,279.2 L 243.3,258.7 L 214.0,265.2 L 203.5,274.9 L 185.0,274.9 L 173.9,290.3 L 141.4,296.6 L 126.4,306.7 L 106.0,290.6 L 77.7,290.4 L 50.5,283.1 L 31.5,297.2 L 28.4,279.5 L 4.0,261.6 L 12.6,235.1 L 24.8,217.9 L 34.4,221.8 L 23.1,192.2 L 63.0,137.4 L 84.9,129.8 L 89.6,111.3 L 67.4,53.8 L 88.5,51.3 L 112.6,33.4 L 146.7,31.9 L 191.2,37.1 L 240.3,52.9 L 274.9,54.2 L 291.5,63.7 L 308.0,52.3 L 319.5,67.7 L 359.3,64.5 L 376.8,70.9 L 379.6,37.7 L 393.1,23.3 L 430.9,19.4 Z"/>
       </svg>
       <!-- threat indicators — teal=med, orange=high, red=crit, green=resolved -->
-      <span class="blip bt" style="top:42%;left:46%;animation-delay:0s"     title="Київ"></span>
-      <span class="blip bo" style="top:46%;left:26%;animation-delay:.4s"    title="Львів"></span>
-      <span class="blip br" style="top:40%;left:64%;animation-delay:.8s"    title="Харків"></span>
-      <span class="blip bt" style="top:58%;left:54%;animation-delay:1.2s"   title="Дніпро"></span>
-      <span class="blip bo" style="top:60%;left:66%;animation-delay:.2s"    title="Донецьк"></span>
-      <span class="blip br" style="top:68%;left:60%;animation-delay:1.6s"   title="Маріуполь"></span>
-      <span class="blip bt" style="top:74%;left:42%;animation-delay:.6s"    title="Одеса"></span>
-      <span class="blip bg" style="top:64%;left:48%;animation-delay:1.0s"   title="Миколаїв"></span>
-      <span class="blip bt" style="top:30%;left:50%;animation-delay:1.4s"   title="Чернігів"></span>
-      <span class="blip bo" style="top:34%;left:58%;animation-delay:.5s"    title="Суми"></span>
-      <span class="blip bg" style="top:50%;left:36%;animation-delay:.9s"    title="Житомир"></span>
-      <span class="blip bt" style="top:52%;left:72%;animation-delay:1.8s"   title="Луганськ"></span>
-      <span class="blip br" style="top:90%;left:54%;animation-delay:.7s"    title="Сімферополь"></span>
-      <span class="blip bo" style="top:66%;left:56%;animation-delay:1.1s"   title="Запоріжжя"></span>
-      <span class="blip bt" style="top:78%;left:50%;animation-delay:1.5s"   title="Херсон"></span>
+      <span class="blip bt" style="top:24.03%;left:46.9%;animation-delay:0s" title="Київ"></span>
+      <span class="blip bo" style="top:31.57%;left:11.19%;animation-delay:.4s" title="Львів"></span>
+      <span class="blip br" style="top:29.72%;left:78.31%;animation-delay:.8s" title="Харків"></span>
+      <span class="blip bt" style="top:48.62%;left:71.82%;animation-delay:1.2s" title="Дніпро"></span>
+      <span class="blip bo" style="top:54.18%;left:86.95%;animation-delay:.2s" title="Донецьк"></span>
+      <span class="blip br" style="top:65.42%;left:85.58%;animation-delay:1.6s" title="Маріуполь"></span>
+      <span class="blip bt" style="top:73.07%;left:48.06%;animation-delay:.6s" title="Одеса"></span>
+      <span class="blip bg" style="top:67.02%;left:55.04%;animation-delay:1.0s" title="Миколаїв"></span>
+      <span class="blip bt" style="top:11.06%;left:51.14%;animation-delay:1.4s" title="Чернігів"></span>
+      <span class="blip bo" style="top:18.35%;left:70.45%;animation-delay:.5s" title="Суми"></span>
+      <span class="blip bg" style="top:26.38%;left:36.67%;animation-delay:.9s" title="Житомир"></span>
+      <span class="blip bt" style="top:47.26%;left:95.2%;animation-delay:1.8s" title="Луганськ"></span>
+      <span class="blip br" style="top:91.97%;left:66.6%;animation-delay:.7s" title="Сімферополь"></span>
+      <span class="blip bo" style="top:56.52%;left:72.54%;animation-delay:1.1s" title="Запоріжжя"></span>
+      <span class="blip bt" style="top:70.85%;left:58.4%;animation-delay:1.5s" title="Херсон"></span>
+      <span class="blip bg" style="top:46.64%;left:1.62%;animation-delay:1.3s" title="Ужгород"></span>
+      <span class="blip bt" style="top:34.66%;left:69.07%;animation-delay:.3s" title="Полтава"></span>
+      <span class="blip bo" style="top:39.11%;left:35.62%;animation-delay:1.7s" title="Вінниця"></span>
     </div>
     <div class="legend">
       <span class="it c">Critical</span>
