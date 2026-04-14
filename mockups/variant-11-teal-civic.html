@@ -6,7 +6,7 @@
 <title>НКЦК — Національний координаційний центр кібербезпеки</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f7fafb;--white:#fff;--ink:#0b2e2e;--ink2:#1f4947;--mute:#5a7875;--line:#dfebea;--teal:#0d9488;--teal2:#0f766e;--teal-l:#ccfbf1;--accent:#f59e0b;--ff:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+:root{--bg:#f5f8fc;--white:#fff;--ink:#0a1e3e;--ink2:#1c3359;--mute:#5b6b85;--line:#dce4ee;--teal:#005BAA;--teal2:#21409A;--teal-l:#dbeafe;--accent:#f59e0b;--ff:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 html,body{background:var(--bg);color:var(--ink);font-family:var(--ff);line-height:1.6}
 a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .container{max-width:1240px;margin:0 auto;padding:0 28px}
@@ -30,26 +30,26 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .btn-out{border-color:var(--line);color:var(--ink2);background:var(--white)}
 
 .hero{padding:100px 0 80px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-200px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(13,148,136,.1),transparent 60%);border-radius:50%}
+.hero::before{content:"";position:absolute;top:-200px;right:-150px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,91,170,.1),transparent 60%);border-radius:50%}
 .hero::after{content:"";position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(245,158,11,.08),transparent 60%);border-radius:50%}
 .hero .inner{position:relative;text-align:center;max-width:860px;margin:0 auto}
 .hero .badge{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;background:var(--teal-l);color:var(--teal2);border-radius:999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:26px}
-.hero .badge::before{content:"";width:8px;height:8px;background:var(--teal);border-radius:50%;box-shadow:0 0 0 3px rgba(13,148,136,.25)}
+.hero .badge::before{content:"";width:8px;height:8px;background:var(--teal);border-radius:50%;box-shadow:0 0 0 3px rgba(0,91,170,.25)}
 .hero h1{font-size:clamp(42px,6vw,80px);font-weight:800;line-height:1;letter-spacing:-.03em;margin-bottom:24px;color:var(--ink)}
 .hero h1 .g{background:linear-gradient(120deg,var(--teal),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p.lead{font-size:19px;color:var(--mute);max-width:700px;margin:0 auto 36px}
 .hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 /* Ukraine threat map */
-.hero .ua{margin:80px auto 0;position:relative;max-width:860px;padding:28px;background:var(--white);border:1px solid var(--line);border-radius:24px;box-shadow:0 40px 80px -40px rgba(13,148,136,.25)}
-.hero .ua .label{position:absolute;top:20px;left:22px;display:inline-flex;align-items:center;gap:10px;background:var(--teal-l);border:1px solid rgba(13,148,136,.25);border-radius:999px;padding:7px 15px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--teal2);z-index:3}
+.hero .ua{margin:80px auto 0;position:relative;max-width:860px;padding:28px;background:var(--white);border:1px solid var(--line);border-radius:24px;box-shadow:0 40px 80px -40px rgba(0,91,170,.25)}
+.hero .ua .label{position:absolute;top:20px;left:22px;display:inline-flex;align-items:center;gap:10px;background:var(--teal-l);border:1px solid rgba(0,91,170,.25);border-radius:999px;padding:7px 15px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--teal2);z-index:3}
 .hero .ua .label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);animation:lbl-pulse 1.8s ease-in-out infinite}
 .hero .ua .label-r{position:absolute;top:20px;right:22px;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;z-index:3}
 .hero .ua .label-r b{color:var(--teal2)}
-@keyframes lbl-pulse{0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,.5)}50%{box-shadow:0 0 0 5px rgba(13,148,136,0)}}
+@keyframes lbl-pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,91,170,.5)}50%{box-shadow:0 0 0 5px rgba(0,91,170,0)}}
 
-.hero .ua .mapwrap{position:relative;margin-top:28px;aspect-ratio:800/533;background-image:radial-gradient(circle at 1px 1px,rgba(11,46,46,.07) 1px,transparent 1px);background-size:22px 22px;border-radius:12px;overflow:visible}
+.hero .ua .mapwrap{position:relative;margin-top:28px;aspect-ratio:800/533;background-image:radial-gradient(circle at 1px 1px,rgba(10,30,62,.07) 1px,transparent 1px);background-size:22px 22px;border-radius:12px;overflow:visible}
 .hero .ua svg.map{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero .ua svg.map path.country{fill:rgba(13,148,136,.05);stroke:rgba(11,46,46,.45);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.hero .ua svg.map path.country{fill:rgba(0,91,170,.05);stroke:rgba(10,30,62,.45);stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
 
 .hero .ua .blip{position:absolute;width:12px;height:12px;border-radius:50%;background:currentColor;transform:translate(-50%,-50%);box-shadow:0 0 0 0 currentColor;animation:blip-ping 2.4s infinite;z-index:2;cursor:pointer}
 .hero .ua .blip::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1.5px solid currentColor;opacity:.5}
@@ -72,7 +72,7 @@ section{padding:90px 0}
 
 .reports{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .rc{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:30px;transition:all .25s}
-.rc:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 24px 60px -30px rgba(13,148,136,.3)}
+.rc:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 24px 60px -30px rgba(0,91,170,.3)}
 .rc .ic{width:56px;height:56px;border-radius:16px;background:var(--teal-l);color:var(--teal2);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
 .rc h3{font-size:18px;margin-bottom:6px;color:var(--ink)}
 .rc p{color:var(--mute);font-size:14px;margin-bottom:18px}
@@ -90,7 +90,7 @@ section{padding:90px 0}
 
 .partners{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .pl{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:30px 20px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;transition:all .25s}
-.pl:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 24px 50px -20px rgba(13,148,136,.25)}
+.pl:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 24px 50px -20px rgba(0,91,170,.25)}
 .pl .icw{width:68px;height:68px;border-radius:18px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;transition:all .25s}
 .pl:hover .icw{background:var(--teal)}
 .pl svg{width:42px;height:42px;color:var(--teal2)}
@@ -101,15 +101,15 @@ section{padding:90px 0}
 .cta-big{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;border-radius:32px;padding:80px 56px;text-align:center;position:relative;overflow:hidden}
 .cta-big::before{content:"";position:absolute;top:-40%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(245,158,11,.3),transparent 60%);border-radius:50%}
 .cta-big h2{font-size:clamp(32px,4.4vw,52px);font-weight:800;letter-spacing:-.02em;margin-bottom:18px;position:relative}
-.cta-big p{color:#ccfbf1;font-size:18px;max-width:560px;margin:0 auto 30px;position:relative}
+.cta-big p{color:#cfdcf5;font-size:18px;max-width:560px;margin:0 auto 30px;position:relative}
 .cta-big .btn-w{background:#fff;color:var(--teal);padding:14px 28px;border-radius:999px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px;position:relative}
 
-footer{background:var(--ink);color:#a7c5c1;padding:70px 0 28px;margin-top:100px;border-radius:40px 40px 0 0}
+footer{background:var(--ink);color:#9db1d3;padding:70px 0 28px;margin-top:100px;border-radius:40px 40px 0 0}
 .f-g{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;margin-bottom:48px}
 footer h5{color:#fff;font-size:14px;margin-bottom:18px}
 footer ul{list-style:none}
 footer li{margin-bottom:10px;font-size:14px}
-footer a:hover{color:#ccfbf1}
+footer a:hover{color:#9cc4f5}
 .f-b{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;justify-content:space-between;font-size:13px}
 
 @media(max-width:900px){.nav{display:none}.reports,.news,.partners,.f-g{grid-template-columns:1fr}.hero .orbit{display:none}}
