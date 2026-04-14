@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>НКЦК — Національний координаційний центр кібербезпеки</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --fg:#f1f4ff;--mute:#9aa3c0;--dim:#6b7399;
+  --c1:#00e5ff;--c2:#a855f7;--c3:#ff3d8a;--c4:#10f5a2;
+  --glass:rgba(255,255,255,.06);--glass2:rgba(255,255,255,.04);
+  --stroke:rgba(255,255,255,.12);--stroke2:rgba(255,255,255,.08);
+  --ff:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+}
+html,body{color:var(--fg);font-family:var(--ff);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;
+  background:
+    radial-gradient(1200px 800px at 0% 0%,rgba(168,85,247,.25),transparent 50%),
+    radial-gradient(1000px 600px at 100% 10%,rgba(0,229,255,.2),transparent 50%),
+    radial-gradient(800px 600px at 50% 100%,rgba(255,61,138,.18),transparent 60%),
+    linear-gradient(180deg,#0a0a1a 0%,#050512 100%);
+  background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:50px 50px;mask-image:radial-gradient(ellipse at center,black,transparent 80%)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1320px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+.mono{font-family:var(--mono)}
+
+/* glass helpers */
+.glass{background:var(--glass);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border:1px solid var(--stroke);border-radius:20px;position:relative;overflow:hidden}
+.glass::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent)}
+
+/* header */
+.header{position:sticky;top:20px;z-index:50;margin-top:20px}
+.header .bar{display:flex;align-items:center;gap:22px;padding:14px 22px;border-radius:100px;background:rgba(10,10,26,.5);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);border:1px solid var(--stroke)}
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{height:40px;filter:drop-shadow(0 0 10px rgba(0,229,255,.3))}
+.nav{display:flex;gap:4px;margin-left:12px}
+.nav a{padding:8px 14px;border-radius:999px;font-size:13px;color:#c9cfe6;font-weight:500;transition:all .2s}
+.nav a:hover{background:rgba(255,255,255,.1);color:var(--c1)}
+.header-r{margin-left:auto;display:flex;align-items:center;gap:10px}
+.ico{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid var(--stroke);background:var(--glass2);cursor:pointer;color:var(--mute)}
+.ico:hover{color:var(--c1);border-color:var(--c1)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;font-weight:600;font-size:13px;cursor:pointer;border:1px solid transparent;transition:all .25s}
+.btn-holo{background:linear-gradient(135deg,var(--c1),var(--c2));color:#0a0a1a;box-shadow:0 0 30px rgba(168,85,247,.4),0 0 60px rgba(0,229,255,.2)}
+.btn-holo:hover{box-shadow:0 0 40px rgba(168,85,247,.6),0 0 80px rgba(0,229,255,.3);transform:translateY(-1px)}
+.btn-gh{border-color:var(--stroke);color:#c9cfe6;background:var(--glass2)}
+.btn-gh:hover{border-color:var(--c1);color:var(--c1)}
+
+/* hero */
+.hero{padding:90px 0 60px;text-align:center;position:relative}
+.hero .badge{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:999px;font-family:var(--mono);font-size:11px;color:var(--c1);text-transform:uppercase;letter-spacing:.12em;margin-bottom:28px;
+  background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.3);box-shadow:0 0 30px rgba(0,229,255,.2)}
+.hero .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c1);box-shadow:0 0 10px var(--c1);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.hero h1{font-size:clamp(44px,7vw,92px);font-weight:800;line-height:.98;letter-spacing:-.035em;margin-bottom:26px;max-width:980px;margin-left:auto;margin-right:auto}
+.hero h1 .holo{background:linear-gradient(120deg,var(--c1) 0%,var(--c2) 50%,var(--c3) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 24px rgba(168,85,247,.3))}
+.hero p.lead{font-size:19px;color:var(--mute);max-width:700px;margin:0 auto 36px}
+.hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+
+/* orb */
+.orb-wrap{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:-1}
+.orb{width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,.35) 0%,rgba(0,229,255,.15) 40%,transparent 70%);filter:blur(40px);animation:float 8s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+
+/* stats bar */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:960px;margin:0 auto}
+.stat{padding:22px 24px}
+.stat .l{font-family:var(--mono);font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.stat .v{font-size:30px;font-weight:800;background:linear-gradient(135deg,var(--c1),var(--c4));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .d{font-family:var(--mono);font-size:11px;color:var(--c4);margin-top:4px}
+
+/* sections */
+section{padding:100px 0;position:relative}
+.sh{text-align:center;margin-bottom:52px;max-width:780px;margin-left:auto;margin-right:auto}
+.sh .tag{display:inline-block;padding:6px 14px;font-family:var(--mono);font-size:11px;color:var(--c1);text-transform:uppercase;letter-spacing:.12em;border:1px solid rgba(0,229,255,.3);border-radius:999px;background:rgba(0,229,255,.05);margin-bottom:18px}
+.sh h2{font-size:clamp(32px,4.2vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1.04}
+.sh h2 .g{background:linear-gradient(120deg,var(--c2),var(--c1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sh p{color:var(--mute);margin-top:14px;font-size:17px}
+
+/* report cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{padding:30px;transition:all .3s;cursor:pointer}
+.card:hover{transform:translateY(-6px);border-color:rgba(168,85,247,.5);box-shadow:0 30px 80px -30px rgba(168,85,247,.4)}
+.card .ic{width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,rgba(0,229,255,.2),rgba(168,85,247,.15));border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;backdrop-filter:blur(10px)}
+.card h3{font-size:18px;margin-bottom:8px}
+.card p{color:var(--mute);font-size:13px;margin-bottom:18px}
+.card .go{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--c1);text-transform:uppercase;letter-spacing:.08em}
+
+/* news */
+.news{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.n{padding:0;overflow:hidden;transition:all .3s;cursor:pointer}
+.n:hover{border-color:rgba(0,229,255,.4);transform:translateY(-4px)}
+.n .m{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(0,229,255,.08));position:relative;overflow:hidden}
+.n .m::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 30% 40%,rgba(0,229,255,.2),transparent 60%)}
+.n .b{padding:22px}
+.n .meta{font-family:var(--mono);font-size:10px;color:var(--c1);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:flex;gap:10px}
+.n .meta span{color:var(--mute)}
+.n h3{font-size:17px;line-height:1.35}
+
+/* strategy */
+.stra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.st{padding:36px 30px;transition:all .3s}
+.st:hover{transform:translateY(-4px);border-color:rgba(168,85,247,.4)}
+.st .n{font-family:var(--mono);font-size:56px;font-weight:800;line-height:.9;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:18px;display:block}
+.st h4{font-size:20px;margin-bottom:12px}
+.st p{color:var(--mute);font-size:14px}
+
+/* partners */
+.partners{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.p{padding:26px 20px;text-align:center;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:14px;cursor:pointer}
+.p:hover{transform:translateY(-4px);border-color:rgba(0,229,255,.5);box-shadow:0 20px 60px -20px rgba(0,229,255,.3)}
+.p .icwrap{width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(168,85,247,.1));border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.p .icwrap::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.15),transparent 60%)}
+.p svg{width:44px;height:44px;color:var(--c1);filter:drop-shadow(0 0 8px rgba(0,229,255,.4));position:relative}
+.p:hover svg{color:var(--c2);filter:drop-shadow(0 0 12px rgba(168,85,247,.6))}
+.p b{font-size:14px;font-weight:700;color:#fff}
+.p span{font-family:var(--mono);font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+
+/* CTA */
+.cta-big{padding:80px 60px;text-align:center;position:relative;overflow:hidden;background:rgba(10,10,26,.6)}
+.cta-big::before{content:"";position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,.3),transparent 60%);filter:blur(60px)}
+.cta-big h2{font-size:clamp(32px,4.6vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1.05;margin-bottom:20px;position:relative}
+.cta-big p{color:var(--mute);font-size:18px;margin-bottom:34px;max-width:580px;margin-left:auto;margin-right:auto;position:relative}
+
+/* footer */
+footer{margin-top:100px;padding:60px 0 28px;border-top:1px solid var(--stroke);position:relative}
+.f-g{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:46px;margin-bottom:44px}
+footer h5{font-family:var(--mono);font-size:11px;color:var(--c1);text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px}
+footer ul{list-style:none}
+footer li{margin-bottom:10px;font-size:13px;color:var(--mute)}
+footer a:hover{color:var(--c1)}
+.f-b{border-top:1px solid var(--stroke);padding-top:22px;display:flex;justify-content:space-between;color:var(--dim);font-size:12px;font-family:var(--mono)}
+
+@media(max-width:960px){.nav{display:none}.stats,.cards,.news,.stra-grid,.partners,.f-g{grid-template-columns:1fr}.partners{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- SVG ICON SPRITE -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0" aria-hidden="true">
+  <defs>
+    <symbol id="i-dsszzi" viewBox="0 0 64 64"><path d="M32 4 L56 14 V34 C56 48 44 58 32 60 C20 58 8 48 8 34 V14 Z" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="3" fill="currentColor"/><path d="M22 32 A10 10 0 0 1 42 32 M17 32 A15 15 0 0 1 47 32 M27 32 A5 5 0 0 1 37 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-sbu" viewBox="0 0 64 64"><path d="M32 4 L56 14 V34 C56 48 44 58 32 60 C20 58 8 48 8 34 V14 Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M32 16 V48 M22 22 V32 L32 40 L42 32 V22 M26 22 V30 M38 22 V30" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-police" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="currentColor" stroke-width="3"/><path d="M32 12 L37.5 25.5 L52 27 L41 37 L44.5 51 L32 43.5 L19.5 51 L23 37 L12 27 L26.5 25.5 Z" fill="currentColor"/></symbol>
+    <symbol id="i-nbu" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 3"/><text x="32" y="44" text-anchor="middle" font-size="32" font-weight="900" fill="currentColor" font-family="Georgia,serif">₴</text></symbol>
+    <symbol id="i-zsu" viewBox="0 0 64 64"><path d="M32 4 L56 14 V34 C56 48 44 58 32 60 C20 58 8 48 8 34 V14 Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M20 18 L44 46 M44 18 L20 46" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><circle cx="32" cy="32" r="4" fill="currentColor"/></symbol>
+    <symbol id="i-mod" viewBox="0 0 64 64"><path d="M32 4 L56 14 V34 C56 48 44 58 32 60 C20 58 8 48 8 34 V14 Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M18 36 C18 26 24 20 32 20 C40 20 46 26 46 36 L46 40 L18 40 Z" fill="currentColor"/><path d="M32 20 V14 M26 40 L26 46 M38 40 L38 46 M32 40 V48" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-rnbo" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="currentColor" stroke-width="3"/><path d="M32 12 V52 M20 20 V32 C20 40 26 46 32 46 M44 20 V32 C44 40 38 46 32 46 M26 14 V24 M38 14 V24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cyber" viewBox="0 0 64 64"><path d="M32 4 L56 14 V34 C56 48 44 58 32 60 C20 58 8 48 8 34 V14 Z" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="5" fill="currentColor"/><path d="M32 18 V26 M32 38 V46 M18 32 H26 M38 32 H46" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="18" cy="32" r="2" fill="currentColor"/><circle cx="46" cy="32" r="2" fill="currentColor"/><circle cx="32" cy="18" r="2" fill="currentColor"/><circle cx="32" cy="46" r="2" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<div class="container header">
+  <div class="bar">
+    <a href="#" class="logo"><img src="../assets/logo_ncscc.png" alt="НКЦК"></a>
+    <nav class="nav">
+      <a href="#">Про НКЦК</a>
+      <a href="#">Діяльність</a>
+      <a href="#">Стратегія</a>
+      <a href="#">Новини</a>
+      <a href="#">Нормативна база</a>
+      <a href="#">Вакансії</a>
+    </nav>
+    <div class="header-r">
+      <button class="ico" aria-label="Пошук">⌕</button>
+      <button class="btn btn-gh">UA / EN</button>
+      <a class="btn btn-holo" href="#report">Повідомити →</a>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="orb-wrap"><div class="orb"></div></div>
+  <div class="container">
+    <span class="badge">▸ NATIONAL CYBER COORDINATION / 24 · 7</span>
+    <h1>Майбутнє <span class="holo">кіберзахисту</span><br>починається тут</h1>
+    <p class="lead">Національний координаційний центр кібербезпеки — аналітичний хаб виявлення, запобігання та реагування на кіберзагрози у державному й приватному секторах.</p>
+    <div class="cta">
+      <a class="btn btn-holo" href="#report">🛡 Повідомити про інцидент</a>
+      <a class="btn btn-gh" href="#about">Про центр →</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat glass"><div class="l">Моніторинг</div><div class="v">24/7</div><div class="d">↑ В оперативі</div></div>
+      <div class="stat glass"><div class="l">Партнерів</div><div class="v">12+</div><div class="d">↑ Відомств</div></div>
+      <div class="stat glass"><div class="l">Інцидентів / доба</div><div class="v">1.2K</div><div class="d">↑ опрацьовано</div></div>
+      <div class="stat glass"><div class="l">Реагування</div><div class="v">4м</div><div class="d">↓ середнє</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="report">
+  <div class="container">
+    <div class="sh"><span class="tag">▸ INCIDENT REPORTING</span><h2>Повідомити про <span class="g">інцидент</span></h2><p>Оберіть категорію. Форма генерує унікальний ID повідомлення та надсилає дані аналітикам НКЦК.</p></div>
+    <div class="cards">
+      <a class="card glass" href="#"><div class="ic">🔒</div><h3>Ransomware</h3><p>Шифрування, вимагання викупу</p><span class="go">OPEN FORM →</span></a>
+      <a class="card glass" href="#"><div class="ic">🦠</div><h3>Шкідливе ПЗ</h3><p>Трояни, бекдори, ШПЗ</p><span class="go">OPEN FORM →</span></a>
+      <a class="card glass" href="#"><div class="ic">🎣</div><h3>Фішинг</h3><p>Клонування, social engineering</p><span class="go">OPEN FORM →</span></a>
+      <a class="card glass" href="#"><div class="ic">💧</div><h3>Витік інформації</h3><p>Data breach, компрометація</p><span class="go">OPEN FORM →</span></a>
+      <a class="card glass" href="#"><div class="ic">⚠</div><h3>Вразливість</h3><p>CVE, zero-day</p><span class="go">OPEN FORM →</span></a>
+      <a class="card glass" href="#"><div class="ic">📡</div><h3>Інший інцидент</h3><p>DDoS, APT, інше</p><span class="go">OPEN FORM →</span></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="sh"><span class="tag">▸ INTELLIGENCE FEED</span><h2>Новини та аналітика</h2></div>
+    <div class="news">
+      <article class="n glass"><div class="m"></div><div class="b"><div class="meta"><b>Аналітика</b><span>12.04.2026</span></div><h3>Щоквартальний звіт про стан кіберзагроз в Україні</h3></div></article>
+      <article class="n glass"><div class="m"></div><div class="b"><div class="meta"><b>Партнерство</b><span>10.04.2026</span></div><h3>Угода про обмін даними з партнерськими CERT</h3></div></article>
+      <article class="n glass"><div class="m"></div><div class="b"><div class="meta"><b>Освіта</b><span>08.04.2026</span></div><h3>Національна програма кіберграмотності</h3></div></article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="sh"><span class="tag">▸ STRATEGY 2021</span><h2>Три стовпи <span class="g">кіберзахисту</span></h2></div>
+    <div class="stra-grid">
+      <div class="st glass"><span class="n">01</span><h4>Стійкість інфраструктури</h4><p>Національна сенсорна мережа, захист від DDoS, системи оцінки вразливостей.</p></div>
+      <div class="st glass"><span class="n">02</span><h4>Державно-приватне партнерство</h4><p>Обмін IOC, спільні інструменти боротьби, відносини довіри.</p></div>
+      <div class="st glass"><span class="n">03</span><h4>Кадри та освіта</h4><p>Кіберграмотність, залучення експертів, розвиток кластера.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="sh"><span class="tag">▸ COORDINATING BODIES</span><h2>Координуючі <span class="g">органи</span></h2><p>НКЦК координує діяльність суб'єктів сектору безпеки і оборони.</p></div>
+    <div class="partners">
+      <div class="p glass"><div class="icwrap"><svg><use href="#i-dsszzi"/></svg></div><b>Держспецзв'язку</b><span>ДЕРЖ. СЛУЖБА</span></div>
+      <div class="p glass"><div class="icwrap"><svg><use href="#i-sbu"/></svg></div><b>СБУ</b><span>СЛУЖБА БЕЗПЕКИ</span></div>
+      <div class="p glass"><div class="icwrap"><svg><use href="#i-police"/></svg></div><b>Нацполіція</b><span>NATIONAL POLICE</span></div>
+      <div class="p glass"><div class="icwrap"><svg><use href="#i-nbu"/></svg></div><b>Нацбанк</b><span>FINANCIAL SECTOR</span></div>
+      <div class="p glass"><div class="icwrap"><svg><use href="#i-zsu"/></svg></div><b>Генштаб ЗСУ</b><span>ARMED FORCES</span></div>
+      <div class="p glass"><div class="icwrap"><svg><use href="#i-mod"/></svg></div><b>Міноборони</b><span>DEFENCE MIN.</span></div>
+      <div class="p glass"><div class="icwrap"><svg><use href="#i-rnbo"/></svg></div><b>РНБО</b><span>NSDC UKRAINE</span></div>
+      <div class="p glass"><div class="icwrap"><svg><use href="#i-cyber"/></svg></div><b>Кіберпол</b><span>CYBER POLICE</span></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:60px 0 100px">
+  <div class="container">
+    <div class="cta-big glass">
+      <h2>Захистимо кіберпростір <span class="g" style="background:linear-gradient(120deg,var(--c1),var(--c2));-webkit-background-clip:text;background-clip:text;color:transparent">України</span> разом</h2>
+      <p>Повідомляйте про підозрілу активність — кожне повідомлення робить цифрову інфраструктуру сильнішою.</p>
+      <a class="btn btn-holo" href="#report">Повідомити про інцидент →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="f-g">
+      <div>
+        <div class="logo" style="margin-bottom:18px"><img src="../assets/logo_ncscc.png" alt="" style="height:44px"></div>
+        <p style="color:var(--mute);font-size:13px;max-width:340px">Національний координаційний центр кібербезпеки при Раді національної безпеки і оборони України.</p>
+      </div>
+      <div><h5>// Center</h5><ul><li><a href="#">Місія</a></li><li><a href="#">Керівництво</a></li><li><a href="#">Нормативна база</a></li><li><a href="#">Вакансії</a></li></ul></div>
+      <div><h5>// Activities</h5><ul><li><a href="#">Стратегія 2021</a></li><li><a href="#">Новини</a></li><li><a href="#">Медіа</a></li><li><a href="#">Проєкти</a></li></ul></div>
+      <div><h5>// Contacts</h5><ul><li>Київ, Україна</li><li>info@ncscc.gov.ua</li><li>+380 50 150 9009</li></ul></div>
+    </div>
+    <div class="f-b"><span>© 2026 НКЦК · ALL RIGHTS RESERVED</span><span>v2.0.26</span></div>
+  </div>
+</footer>
+
+</body></html>

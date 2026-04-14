@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>НКЦК — Національний координаційний центр кібербезпеки</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#05070d;--bg2:#0a0f1c;--panel:#0e1524;--line:#1b2740;
+  --fg:#e6ecf5;--mute:#8ea0bd;--cyan:#19d3f3;--blue:#3b82f6;--accent:#5eead4;
+  --danger:#ff4d6d;--ok:#22c55e;
+  --ff:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+html,body{background:var(--bg);color:var(--fg);font-family:var(--ff);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1280px;margin:0 auto;padding:0 24px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+
+/* top bar */
+.topbar{background:#030509;border-bottom:1px solid var(--line);font-size:12px;color:var(--mute)}
+.topbar .row{display:flex;justify-content:space-between;align-items:center;height:36px}
+.topbar a{margin-left:18px}
+.topbar .status{display:inline-flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
+
+/* header */
+.header{position:sticky;top:0;z-index:50;background:rgba(5,7,13,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.header .row{display:flex;align-items:center;gap:24px;height:78px}
+.logo{display:flex;align-items:center;gap:14px}
+.logo img{height:46px;width:auto}
+.logo-text{font-weight:800;letter-spacing:.04em;font-size:18px}
+.logo-text small{display:block;font-weight:500;color:var(--mute);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+.nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.nav a{padding:10px 14px;border-radius:8px;font-size:14px;font-weight:500;color:#c9d6e8}
+.nav a:hover{background:var(--panel);color:var(--cyan)}
+.header-cta{display:flex;align-items:center;gap:10px}
+.icon-btn{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;color:var(--mute);background:transparent;cursor:pointer}
+.icon-btn:hover{color:var(--cyan);border-color:var(--cyan)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;transition:all .2s}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#041321}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 30px -10px var(--cyan)}
+.btn-ghost{border-color:var(--line);color:#c9d6e8}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* hero */
+.hero{position:relative;padding:90px 0 80px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(1000px 500px at 80% -10%,rgba(25,211,243,.18),transparent 60%),
+  radial-gradient(800px 400px at 0% 50%,rgba(59,130,246,.15),transparent 60%);
+  pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%);opacity:.25}
+.hero .inner{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center}
+.tag{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(25,211,243,.05);font-size:12px;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em}
+.hero h1{font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1.05;margin:22px 0;letter-spacing:-.02em}
+.hero h1 .grad{background:linear-gradient(135deg,var(--cyan),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:18px;color:var(--mute);max-width:620px;margin-bottom:34px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;max-width:560px}
+.stat{border:1px solid var(--line);border-radius:14px;padding:18px;background:rgba(14,21,36,.5)}
+.stat b{display:block;font-size:30px;font-weight:800;color:var(--cyan)}
+.stat span{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.1em}
+
+/* threat panel */
+.threat-panel{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,rgba(14,21,36,.8),rgba(10,15,28,.5));padding:24px;position:relative;overflow:hidden}
+.threat-panel::before{content:"";position:absolute;top:-1px;left:-1px;right:-1px;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.threat-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.threat-head h3{font-size:14px;text-transform:uppercase;letter-spacing:.1em}
+.pill{font-family:ui-monospace,monospace;font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(34,197,94,.15);color:var(--ok);border:1px solid rgba(34,197,94,.3)}
+.threat-item{display:flex;gap:12px;padding:14px 0;border-top:1px dashed var(--line);font-size:13px}
+.threat-item:first-of-type{border-top:0}
+.lvl{font-family:ui-monospace,monospace;font-size:10px;padding:3px 7px;border-radius:4px;height:fit-content;white-space:nowrap}
+.lvl.c{background:rgba(255,77,109,.15);color:var(--danger)}
+.lvl.h{background:rgba(245,158,11,.15);color:#fbbf24}
+.lvl.m{background:rgba(59,130,246,.15);color:#60a5fa}
+.threat-item b{display:block;color:#e6ecf5;font-size:13px;margin-bottom:2px}
+.threat-item span{color:var(--mute);font-size:12px}
+.threat-time{margin-left:auto;color:var(--mute);font-family:ui-monospace,monospace;font-size:11px}
+
+/* section base */
+section{padding:90px 0}
+.section-head{margin-bottom:48px;max-width:760px}
+.section-head .mono{display:block;margin-bottom:10px;color:var(--cyan)}
+.section-head h2{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.02em}
+.section-head p{color:var(--mute);margin-top:12px;font-size:16px}
+
+/* report grid */
+.report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.report-card{position:relative;padding:28px;border:1px solid var(--line);border-radius:16px;background:var(--panel);transition:all .25s;overflow:hidden;cursor:pointer}
+.report-card::before{content:"";position:absolute;inset:0;border-radius:16px;padding:1px;background:linear-gradient(135deg,transparent 40%,var(--cyan),transparent 60%);opacity:0;transition:opacity .25s;-webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.report-card:hover{transform:translateY(-4px);border-color:transparent}
+.report-card:hover::before{opacity:1}
+.report-card .icon{width:52px;height:52px;border-radius:12px;background:rgba(25,211,243,.1);color:var(--cyan);display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:24px}
+.report-card h3{font-size:18px;margin-bottom:8px}
+.report-card p{color:var(--mute);font-size:14px;margin-bottom:18px}
+.report-card .arrow{color:var(--cyan);font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+
+/* news */
+.news-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px}
+.news-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);transition:all .2s}
+.news-card:hover{border-color:var(--cyan);transform:translateY(-3px)}
+.news-card .media{aspect-ratio:16/9;background:linear-gradient(135deg,#0f1a33,#081020);position:relative;overflow:hidden}
+.news-card .media::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(25,211,243,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(25,211,243,.08) 1px,transparent 1px);background-size:24px 24px}
+.news-card.featured .media{aspect-ratio:16/10}
+.news-card.featured h3{font-size:22px}
+.news-body{padding:22px}
+.news-meta{display:flex;gap:12px;font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.news-meta .cat{color:var(--cyan)}
+.news-body h3{font-size:16px;line-height:1.35;margin-bottom:8px}
+.news-body p{color:var(--mute);font-size:13px}
+
+/* strategy */
+.strategy{background:linear-gradient(180deg,transparent,rgba(25,211,243,.04))}
+.strategy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.thesis{position:relative;padding:32px 28px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}
+.thesis .num{font-family:ui-monospace,monospace;color:var(--cyan);font-size:12px;letter-spacing:.1em;margin-bottom:14px;display:block}
+.thesis h4{font-size:20px;margin-bottom:12px}
+.thesis p{color:var(--mute);font-size:14px}
+
+/* partners */
+.partners{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:40px}
+.partners .po{background:var(--panel);padding:26px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--mute);font-size:13px;font-weight:600;letter-spacing:.02em;text-align:center;transition:all .2s}
+.partners .po:hover{background:rgba(25,211,243,.05);color:var(--cyan)}
+.partners .po svg{width:40px;height:40px;color:var(--cyan);transition:transform .2s}
+.partners .po:hover svg{transform:scale(1.1)}
+
+/* footer */
+footer{border-top:1px solid var(--line);background:#030509;padding:70px 0 30px;margin-top:80px}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px}
+footer h5{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--cyan);margin-bottom:18px}
+footer ul{list-style:none}
+footer li{margin-bottom:10px;font-size:14px;color:var(--mute)}
+footer li a:hover{color:var(--cyan)}
+.f-bottom{border-top:1px solid var(--line);padding-top:24px;display:flex;justify-content:space-between;color:var(--mute);font-size:12px}
+
+@media (max-width:960px){
+  .hero .inner,.news-grid,.strategy-grid,.report-grid,.f-grid{grid-template-columns:1fr}
+  .nav{display:none}
+  .partners{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0" aria-hidden="true"><defs><symbol id="i-dsszzi" viewBox="0 0 64 64"><path d="M32 4 L56 14 V34 C56 48 44 58 32 60 C20 58 8 48 8 34 V14 Z" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="3" fill="currentColor"/><path d="M22 32 A10 10 0 0 1 42 32 M17 32 A15 15 0 0 1 47 32 M27 32 A5 5 0 0 1 37 32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol><symbol id="i-sbu" viewBox="0 0 64 64"><path d="M32 4 L56 14 V34 C56 48 44 58 32 60 C20 58 8 48 8 34 V14 Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M32 16 V48 M22 22 V32 L32 40 L42 32 V22 M26 22 V30 M38 22 V30" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="i-police" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="currentColor" stroke-width="3"/><path d="M32 12 L37.5 25.5 L52 27 L41 37 L44.5 51 L32 43.5 L19.5 51 L23 37 L12 27 L26.5 25.5 Z" fill="currentColor"/></symbol><symbol id="i-nbu" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 3"/><text x="32" y="44" text-anchor="middle" font-size="32" font-weight="900" fill="currentColor" font-family="Georgia,serif">₴</text></symbol><symbol id="i-zsu" viewBox="0 0 64 64"><path d="M32 4 L56 14 V34 C56 48 44 58 32 60 C20 58 8 48 8 34 V14 Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M20 18 L44 46 M44 18 L20 46" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><circle cx="32" cy="32" r="4" fill="currentColor"/></symbol><symbol id="i-mod" viewBox="0 0 64 64"><path d="M32 4 L56 14 V34 C56 48 44 58 32 60 C20 58 8 48 8 34 V14 Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M18 36 C18 26 24 20 32 20 C40 20 46 26 46 36 L46 40 L18 40 Z" fill="currentColor"/><path d="M32 20 V14 M26 40 L26 46 M38 40 L38 46 M32 40 V48" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol><symbol id="i-rnbo" viewBox="0 0 64 64"><circle cx="32" cy="32" r="27" fill="none" stroke="currentColor" stroke-width="3"/><path d="M32 12 V52 M20 20 V32 C20 40 26 46 32 46 M44 20 V32 C44 40 38 46 32 46 M26 14 V24 M38 14 V24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol></defs></svg>
+
+<div class="topbar">
+  <div class="container row">
+    <div><span class="status"><span class="dot"></span>Статус систем: нормальний</span> · Рівень загрози: <b style="color:#fbbf24">ПІДВИЩЕНИЙ</b></div>
+    <div>
+      <a href="#">Для людей з порушенням зору</a>
+      <a href="#"><b style="color:var(--cyan)">UA</b> / EN</a>
+    </div>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container row">
+    <a href="#" class="logo">
+      <img src="../assets/logo_ncscc.png" alt="НКЦК">
+    </a>
+    <nav class="nav">
+      <a href="#">Про НКЦК</a>
+      <a href="#">Керівництво</a>
+      <a href="#">Діяльність</a>
+      <a href="#">Стратегія 2021</a>
+      <a href="#">Нормативна база</a>
+      <a href="#">Новини</a>
+      <a href="#">Медіа про нас</a>
+      <a href="#">Вакансії</a>
+    </nav>
+    <div class="header-cta">
+      <button class="icon-btn" aria-label="Пошук">⌕</button>
+      <a class="btn btn-primary" href="#report">Повідомити інцидент →</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container inner">
+    <div>
+      <span class="tag">● В ОПЕРАТИВНОМУ РЕЖИМІ 24/7</span>
+      <h1>Координуємо <span class="grad">кіберзахист</span> держави.<br>Щохвилини. Щодня.</h1>
+      <p class="lead">Національний координаційний центр кібербезпеки — аналітичний центр з виявлення, запобігання та реагування на кіберінциденти у державному й приватному секторах.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#report">🛡 Повідомити про інцидент</a>
+        <a class="btn btn-ghost" href="#about">Про центр →</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>24/7</b><span>Моніторинг загроз</span></div>
+        <div class="stat"><b>12+</b><span>Відомств-партнерів</span></div>
+        <div class="stat"><b>2020</b><span>Перезапуск центру</span></div>
+      </div>
+    </div>
+
+    <div class="threat-panel">
+      <div class="threat-head">
+        <h3>⚡ Стрічка загроз</h3>
+        <span class="pill">LIVE</span>
+      </div>
+      <div class="threat-item">
+        <span class="lvl c">CRIT</span>
+        <div><b>Фішингова кампанія проти держустанов</b><span>Ідентифіковано новий домен-клон</span></div>
+        <span class="threat-time">14:32</span>
+      </div>
+      <div class="threat-item">
+        <span class="lvl h">HIGH</span>
+        <div><b>Ransomware активність SmokeLoader</b><span>Рекомендації з пом'якшення опубліковано</span></div>
+        <span class="threat-time">12:18</span>
+      </div>
+      <div class="threat-item">
+        <span class="lvl m">MED</span>
+        <div><b>DDoS на фінансовий сектор</b><span>Джерело нейтралізовано</span></div>
+        <span class="threat-time">09:45</span>
+      </div>
+      <div class="threat-item">
+        <span class="lvl h">HIGH</span>
+        <div><b>Виявлено вразливість CVE-2025-XXXX</b><span>Оновлення доступне</span></div>
+        <span class="threat-time">08:02</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="report">
+  <div class="container">
+    <div class="section-head">
+      <span class="mono">// Повідомити НКЦК</span>
+      <h2>Зафіксували інцидент? Повідомте нас.</h2>
+      <p>Кожне повідомлення обробляється аналітиками у оперативному режимі. Ви отримаєте унікальний ID для відстеження статусу.</p>
+    </div>
+    <div class="report-grid">
+      <a class="report-card" href="#"><div class="icon">🔒</div><h3>Ransomware</h3><p>Вимагання викупу, шифрування даних</p><span class="arrow">Повідомити →</span></a>
+      <a class="report-card" href="#"><div class="icon">🪱</div><h3>Шкідливе ПЗ (ШПЗ)</h3><p>Віруси, трояни, бекдори</p><span class="arrow">Повідомити →</span></a>
+      <a class="report-card" href="#"><div class="icon">🎣</div><h3>Фішинг</h3><p>Підроблені листи, сайти-клони</p><span class="arrow">Повідомити →</span></a>
+      <a class="report-card" href="#"><div class="icon">💧</div><h3>Витік інформації</h3><p>Компрометація даних</p><span class="arrow">Повідомити →</span></a>
+      <a class="report-card" href="#"><div class="icon">⚠</div><h3>Вразливість</h3><p>CVE, zero-day, слабкі місця</p><span class="arrow">Повідомити →</span></a>
+      <a class="report-card" href="#"><div class="icon">⚡</div><h3>Інший інцидент</h3><p>DDoS, APT, інше</p><span class="arrow">Повідомити →</span></a>
+    </div>
+  </div>
+</section>
+
+<section style="background:rgba(10,15,28,.5);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="container">
+    <div class="section-head">
+      <span class="mono">// Новини та оновлення</span>
+      <h2>Актуальне з фронту кіберзахисту</h2>
+    </div>
+    <div class="news-grid">
+      <article class="news-card featured">
+        <div class="media"></div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">Аналітика</span><span>12.04.2026</span></div>
+          <h3>НКЦК опублікував щоквартальний звіт про кіберзагрози в Україні</h3>
+          <p>Ключові висновки щодо еволюції загроз, спрямованих на критичну інфраструктуру та приватний сектор.</p>
+        </div>
+      </article>
+      <article class="news-card">
+        <div class="media"></div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">Партнерство</span><span>10.04.2026</span></div>
+          <h3>Угода про обмін даними з міжнародними CERT-командами</h3>
+          <p>Розширення платформи MISP для національного кластеру.</p>
+        </div>
+      </article>
+      <article class="news-card">
+        <div class="media"></div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">Освіта</span><span>08.04.2026</span></div>
+          <h3>Старт програми підвищення кіберграмотності для МСБ</h3>
+          <p>Безкоштовні матеріали та вебінари для підприємств.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="strategy">
+  <div class="container">
+    <div class="section-head">
+      <span class="mono">// Стратегія кібербезпеки України 2021</span>
+      <h2>Три стовпи національного кіберзахисту</h2>
+      <p>Дотримуємося Стратегії кібербезпеки України, затвердженої Указом Президента, та щоденно впроваджуємо її ключові положення.</p>
+    </div>
+    <div class="strategy-grid">
+      <div class="thesis"><span class="num">01 / СТІЙКІСТЬ</span><h4>Cтійка національна система кіберзахисту</h4><p>Побудова інфраструктури моніторингу, центрів протидії DDoS та системи оцінки вразливостей.</p></div>
+      <div class="thesis"><span class="num">02 / ПАРТНЕРСТВО</span><h4>Державно-приватне партнерство</h4><p>Обмін даними про актуальні кіберзагрози та спільні інструменти боротьби з ними.</p></div>
+      <div class="thesis"><span class="num">03 / РОЗВИТОК</span><h4>Розвиток кадрового потенціалу</h4><p>Освітні ініціативи, підвищення кіберграмотності, залучення експертів приватного сектору.</p></div>
+    </div>
+    <div style="margin-top:60px">
+      <div class="section-head" style="margin-bottom:24px"><span class="mono">// Партнери та координуючі органи</span></div>
+      <div class="partners">
+        <div class="po"><svg><use href="#i-dsszzi"/></svg>Держспецзв'язку</div>
+        <div class="po"><svg><use href="#i-sbu"/></svg>СБУ</div>
+        <div class="po"><svg><use href="#i-police"/></svg>Нацполіція</div>
+        <div class="po"><svg><use href="#i-nbu"/></svg>НБУ</div>
+        <div class="po"><svg><use href="#i-zsu"/></svg>Генштаб ЗСУ</div>
+        <div class="po"><svg><use href="#i-mod"/></svg>Міноборони</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div>
+        <div class="logo" style="margin-bottom:18px"><img src="../assets/logo_ncscc.png" alt=""></div>
+        <p style="color:var(--mute);font-size:13px;max-width:340px">Національний координаційний центр кібербезпеки при Раді національної безпеки і оборони України.</p>
+      </div>
+      <div><h5>Про центр</h5><ul><li><a href="#">Місія</a></li><li><a href="#">Керівництво</a></li><li><a href="#">Нормативна база</a></li><li><a href="#">Вакансії</a></li></ul></div>
+      <div><h5>Діяльність</h5><ul><li><a href="#">Стратегія 2021</a></li><li><a href="#">Новини</a></li><li><a href="#">Медіа</a></li><li><a href="#">Проєкти</a></li></ul></div>
+      <div><h5>Контакти</h5><ul><li>Київ, Україна</li><li>info@ncscc.gov.ua</li><li>+380 50 150 9009</li><li><a href="#">Карта сайту</a></li></ul></div>
+    </div>
+    <div class="f-bottom"><span>© 2026 НКЦК. Всі права захищені.</span><span>Апарат РНБО України</span></div>
+  </div>
+</footer>
+
+</body></html>
