@@ -39,10 +39,31 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .hero h1 .g{background:linear-gradient(120deg,var(--teal),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p.lead{font-size:19px;color:var(--mute);max-width:700px;margin:0 auto 36px}
 .hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.hero .orbit{margin-top:90px;position:relative;height:160px}
-.hero .orbit .dot{position:absolute;top:50%;left:50%;width:120px;height:120px;border-radius:50%;background:var(--white);border:1px solid var(--line);box-shadow:0 20px 50px -20px rgba(13,148,136,.25);display:flex;align-items:center;justify-content:center;transform:translate(-50%,-50%)}
-.hero .orbit .dot img{width:74%}
-.hero .orbit::before{content:"";position:absolute;top:50%;left:50%;width:600px;height:160px;border:1px dashed var(--line);border-radius:50%;transform:translate(-50%,-50%)}
+/* Ukraine threat map */
+.hero .ua{margin:80px auto 0;position:relative;max-width:860px;padding:28px;background:var(--white);border:1px solid var(--line);border-radius:24px;box-shadow:0 40px 80px -40px rgba(13,148,136,.25)}
+.hero .ua .label{position:absolute;top:20px;left:22px;display:inline-flex;align-items:center;gap:10px;background:var(--teal-l);border:1px solid rgba(13,148,136,.25);border-radius:999px;padding:7px 15px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--teal2);z-index:3}
+.hero .ua .label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal);animation:lbl-pulse 1.8s ease-in-out infinite}
+.hero .ua .label-r{position:absolute;top:20px;right:22px;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase;z-index:3}
+.hero .ua .label-r b{color:var(--teal2)}
+@keyframes lbl-pulse{0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,.5)}50%{box-shadow:0 0 0 5px rgba(13,148,136,0)}}
+
+.hero .ua .mapwrap{position:relative;margin-top:28px}
+.hero .ua svg.map{width:100%;height:auto;display:block;background-image:radial-gradient(circle at 1px 1px,rgba(11,46,46,.08) 1px,transparent 1px);background-size:22px 22px;border-radius:12px}
+.hero .ua svg.map path.country{fill:rgba(13,148,136,.04);stroke:rgba(11,46,46,.35);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.hero .ua svg.map path.crimea{fill:rgba(13,148,136,.04);stroke:rgba(11,46,46,.25);stroke-width:1.6;stroke-dasharray:4 3}
+
+.hero .ua .blip{position:absolute;width:12px;height:12px;border-radius:50%;background:currentColor;transform:translate(-50%,-50%);box-shadow:0 0 0 0 currentColor;animation:blip-ping 2.4s infinite;z-index:2;cursor:pointer}
+.hero .ua .blip::after{content:"";position:absolute;inset:-3px;border-radius:50%;border:1.5px solid currentColor;opacity:.5}
+@keyframes blip-ping{0%{box-shadow:0 0 0 0 currentColor;opacity:1}70%{box-shadow:0 0 0 18px transparent;opacity:.3}100%{box-shadow:0 0 0 0 transparent;opacity:1}}
+.hero .ua .bt{color:var(--teal);width:10px;height:10px}
+.hero .ua .bo{color:var(--accent);width:13px;height:13px}
+.hero .ua .br{color:#dc2626;width:14px;height:14px}
+.hero .ua .bg{color:#10b981;width:9px;height:9px}
+
+.hero .ua .legend{display:flex;gap:22px;justify-content:center;margin-top:22px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero .ua .legend .it{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.hero .ua .legend .it::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 2px currentColor;opacity:.5}
+.hero .ua .legend .it.c{color:#dc2626}.hero .ua .legend .it.h{color:var(--accent)}.hero .ua .legend .it.m{color:var(--teal)}.hero .ua .legend .it.r{color:#10b981}
 
 section{padding:90px 0}
 .sh{text-align:center;margin-bottom:52px;max-width:720px;margin-left:auto;margin-right:auto}
@@ -112,7 +133,40 @@ footer a:hover{color:#ccfbf1}
   <h1>Безпечний цифровий<br><span class="g">простір України</span></h1>
   <p class="lead">Національний координаційний центр кібербезпеки — аналітичний центр з виявлення, запобігання та реагування на кіберзагрози у державному та приватному секторах.</p>
   <div class="cta"><a class="btn btn-teal" href="#report">Повідомити про інцидент →</a><a class="btn btn-out" href="#about">Про центр</a></div>
-  <div class="orbit"><div class="dot"><img src="../assets/logo_ncscc.png" alt=""></div></div>
+
+  <!-- Ukraine threat map -->
+  <div class="ua">
+    <span class="label">Моніторинг загроз — Live</span>
+    <span class="label-r">Оновлено <b>14:32 · 14.04.2026</b></span>
+    <div class="mapwrap">
+      <svg class="map" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" aria-label="Мапа України">
+        <path class="country" d="M 85,298 L 118,260 L 148,228 L 172,196 L 196,168 L 228,148 L 264,132 L 302,118 L 344,108 L 388,104 L 428,108 L 470,118 L 510,132 L 548,150 L 582,170 L 612,192 L 640,214 L 668,238 L 692,264 L 710,288 L 720,312 L 712,336 L 692,354 L 666,368 L 634,378 L 600,384 L 564,388 L 528,390 L 492,392 L 458,396 L 432,402 L 422,418 Q 420,438 436,458 Q 448,470 438,464 Q 420,444 408,440 L 388,420 L 356,418 L 320,422 L 286,428 L 250,428 L 214,420 L 178,404 L 146,382 L 118,354 L 96,326 Z"/>
+        <path class="crimea" d="M 420,418 L 444,430 L 464,438 L 478,448 L 484,460 L 476,472 L 456,470 L 438,458 L 424,442 Z"/>
+      </svg>
+      <!-- threat indicators — teal=med, orange=high, red=crit, green=resolved -->
+      <span class="blip bt" style="top:42%;left:46%;animation-delay:0s"     title="Київ"></span>
+      <span class="blip bo" style="top:46%;left:26%;animation-delay:.4s"    title="Львів"></span>
+      <span class="blip br" style="top:40%;left:64%;animation-delay:.8s"    title="Харків"></span>
+      <span class="blip bt" style="top:58%;left:54%;animation-delay:1.2s"   title="Дніпро"></span>
+      <span class="blip bo" style="top:60%;left:66%;animation-delay:.2s"    title="Донецьк"></span>
+      <span class="blip br" style="top:68%;left:60%;animation-delay:1.6s"   title="Маріуполь"></span>
+      <span class="blip bt" style="top:74%;left:42%;animation-delay:.6s"    title="Одеса"></span>
+      <span class="blip bg" style="top:64%;left:48%;animation-delay:1.0s"   title="Миколаїв"></span>
+      <span class="blip bt" style="top:30%;left:50%;animation-delay:1.4s"   title="Чернігів"></span>
+      <span class="blip bo" style="top:34%;left:58%;animation-delay:.5s"    title="Суми"></span>
+      <span class="blip bg" style="top:50%;left:36%;animation-delay:.9s"    title="Житомир"></span>
+      <span class="blip bt" style="top:52%;left:72%;animation-delay:1.8s"   title="Луганськ"></span>
+      <span class="blip br" style="top:90%;left:54%;animation-delay:.7s"    title="Сімферополь"></span>
+      <span class="blip bo" style="top:66%;left:56%;animation-delay:1.1s"   title="Запоріжжя"></span>
+      <span class="blip bt" style="top:78%;left:50%;animation-delay:1.5s"   title="Херсон"></span>
+    </div>
+    <div class="legend">
+      <span class="it c">Critical</span>
+      <span class="it h">High</span>
+      <span class="it m">Medium</span>
+      <span class="it r">Resolved</span>
+    </div>
+  </div>
 </div></section>
 
 <section id="report">
